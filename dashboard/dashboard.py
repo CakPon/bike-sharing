@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 # Memuat data
-df_day = pd.read_csv('day.csv')
-df_hour = pd.read_csv('hour.csv')
+df_day = pd.read_csv('dashboard/day.csv')
+df_hour = pd.read_csv('dashboard/hour.csv')
 
 # Mengubah format kolom 'dteday' menjadi datetime
 df_day['dteday'] = pd.to_datetime(df_day['dteday'])
