@@ -59,11 +59,15 @@ if faktor == 'Musim':
     df_day['season'] = df_day['season'].astype('category')
 
     # Visualisasi dengan seaborn boxplot
-    st.write(sns.boxplot(x='season', y='cnt', data=df_day))
+    fig_season = plt.figure()
+    sns.boxplot(x='season', y='cnt', data=df_day)
+    st.pyplot(fig_season)
 
 elif faktor == 'Temperatur':
     # Visualisasi pengaruh temperatur
-    st.write(sns.lmplot(x='temp', y='cnt', data=df_day))
+    fig_temp = plt.figure()
+    sns.lmplot(x='temp', y='cnt', data=df_day)
+    st.pyplot(fig_temp)
 
 elif faktor == 'Waktu (Per Jam)':
     # Pastikan 'dteday' bertipe datetime
