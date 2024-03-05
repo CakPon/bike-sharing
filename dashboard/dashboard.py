@@ -31,20 +31,22 @@ st.metric("Rata-rata Penggunaan Harian", df_day['cnt'].mean())
 st.markdown("## Waktu Penggunaan")
 
 # Visualisasi Waktu penggunaan berdasarkan jam
+fig_hourly = plt.figure()
 plt.bar(df_hour['hr'], df_hour['cnt'])
 plt.xlabel('Hour')
 plt.ylabel('Average User')
 plt.title('Distribution of Users per Hour')
 plt.grid(axis='y', linestyle='--', alpha=0.7)
-st.pyplot(plt)
+st.pyplot(fig_hourly)
 
 # Visualisasi Jumlah User sesuai cuacanya
+fig_weather = plt.figure()
 plt.bar(df_day['weathersit'], df_day['cnt'], color=['green'])  
 plt.xlabel('Weather Situation')
 plt.ylabel('Total User')
 plt.title('Total Users by Weather Situation')
 plt.grid(axis='y', alpha=0.7)
-st.pyplot(plt)
+st.pyplot(fig_weather)  
 
 # Analisis Faktor
 st.markdown("## Analisis Faktor")
@@ -57,13 +59,15 @@ if faktor == 'Musim':
     df_day['season'] = df_day['season'].astype('category')
 
     # Visualisasi dengan seaborn boxplot
+    fig_season = plt.figure()
     sns.boxplot(x='season', y='cnt', data=df_day)
-    st.pyplot(plt)
+    st.pyplot(fig_season)
 
 elif faktor == 'Temperatur':
     # Visualisasi pengaruh temperatur
+    fig_temp = plt.figure()
     sns.lmplot(x='temp', y='cnt', data=df_day)
-    st.pyplot(plt)
+    st.pyplot(fig_temp)
 
 elif faktor == 'Waktu (Per Jam)':
     # Pastikan 'dteday' bertipe datetime
@@ -71,10 +75,11 @@ elif faktor == 'Waktu (Per Jam)':
         df_hour['dteday'] = pd.to_datetime(df_hour['dteday'])
 
     # Plot jumlah pengguna terdaftar vs. jam
+    fig_hourly_registered = plt.figure()
     plt.plot(df_hour['dteday'].dt.hour, df_hour['cnt'])
     plt.xlabel('Jam')
     plt.ylabel('Jumlah Pengguna Terdaftar')
-    st.pyplot(plt)
+    st.pyplot(fig_hourly_registered)
 
 # Kesimpulan
 st.markdown("## Kesimpulan")
