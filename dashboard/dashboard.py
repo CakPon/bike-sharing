@@ -52,18 +52,9 @@ st.pyplot(fig_weather)
 st.markdown("## Analisis Faktor")
 
 # Memilih faktor
-faktor = st.selectbox("Pilih Faktor", ['Musim', 'Temperatur', 'Waktu'])
+faktor = st.selectbox("Pilih Faktor", ['Temperatur', 'Waktu'])
 
-if faktor == 'Musim':
-    # Pastikan 'season' bertipe kategori
-    df_day['season'] = df_day['season'].astype('category')
-
-    # Visualisasi dengan seaborn boxplot
-    fig_season = plt.figure()
-    sns.boxplot(x='season', y='cnt', data=df_day)
-    st.pyplot(fig_season)
-
-elif faktor == 'Temperatur':
+if faktor == 'Temperatur':
     # Visualisasi pengaruh temperatur
     fig_temp = plt.figure()
     sns.lmplot(x='temp', y='cnt', data=df_day)
