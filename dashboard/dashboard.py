@@ -4,10 +4,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# Set Matplotlib backend
-import matplotlib
-matplotlib.use('agg')
-
 # Memuat data
 df_day = pd.read_csv('day.csv')
 df_hour = pd.read_csv('hour.csv')
@@ -63,15 +59,11 @@ if faktor == 'Musim':
     df_day['season'] = df_day['season'].astype('category')
 
     # Visualisasi dengan seaborn boxplot
-    fig_season = plt.figure()
-    sns.boxplot(x='season', y='cnt', data=df_day)
-    st.pyplot(fig_season)
+    st.write(sns.boxplot(x='season', y='cnt', data=df_day))
 
 elif faktor == 'Temperatur':
     # Visualisasi pengaruh temperatur
-    fig_temp = plt.figure()
-    sns.lmplot(x='temp', y='cnt', data=df_day)
-    st.pyplot(fig_temp)
+    st.write(sns.lmplot(x='temp', y='cnt', data=df_day))
 
 elif faktor == 'Waktu (Per Jam)':
     # Pastikan 'dteday' bertipe datetime
@@ -82,7 +74,7 @@ elif faktor == 'Waktu (Per Jam)':
     fig_hourly_registered = plt.figure()
     plt.plot(df_hour['dteday'].dt.hour, df_hour['cnt'])
     plt.xlabel('Jam')
-    plt.ylabel('Jumlah Pengguna')
+    plt.ylabel('Jumlah Pengguna Terdaftar')
     st.pyplot(fig_hourly_registered)
 
 # Kesimpulan
