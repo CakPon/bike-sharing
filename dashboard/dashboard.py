@@ -4,6 +4,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+# Set Matplotlib backend
+import matplotlib
+matplotlib.use('agg')
+
 # Memuat data
 df_day = pd.read_csv('day.csv')
 df_hour = pd.read_csv('hour.csv')
@@ -78,7 +82,7 @@ elif faktor == 'Waktu (Per Jam)':
     fig_hourly_registered = plt.figure()
     plt.plot(df_hour['dteday'].dt.hour, df_hour['cnt'])
     plt.xlabel('Jam')
-    plt.ylabel('Jumlah Pengguna Terdaftar')
+    plt.ylabel('Jumlah Pengguna')
     st.pyplot(fig_hourly_registered)
 
 # Kesimpulan
